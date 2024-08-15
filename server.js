@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { PORT, CROSS_ORIGIN } = process.env;
 
 const io = require("socket.io")(PORT || 8080, {
@@ -6,7 +8,14 @@ const io = require("socket.io")(PORT || 8080, {
   },
 });
 
+console.log(CROSS_ORIGIN);
+console.log(PORT);
+
 io.on("connection", (socket) => {
+  const userAgent = socket.handshake.headers['user-agent'];
+
+  console.log('User Agent: ', userAgent)
+
   socket.on("gameDetails", (key, sessionValue) => {
     io.emit("gameDetails", key, sessionValue);
   });
