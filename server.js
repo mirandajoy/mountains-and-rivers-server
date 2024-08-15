@@ -2,7 +2,7 @@ const { PORT, CROSS_ORIGIN } = process.env;
 
 const io = require("socket.io")(PORT || 8080, {
   cors: {
-    origin: CROSS_ORIGIN,
+    origin: CROSS_ORIGIN || "https://mountains-and-rivers.netlify.app",
   },
 });
 
