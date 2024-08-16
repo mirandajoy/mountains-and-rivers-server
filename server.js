@@ -8,7 +8,7 @@ const httpServer = createServer();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
+    origin: "http://mountains-and-rivers-game.s3-website.us-east-2.amazonaws.com/",
   },
 });
 
