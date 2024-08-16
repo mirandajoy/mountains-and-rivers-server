@@ -8,7 +8,7 @@ const httpServer = createServer();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: [CROSS_ORIGIN, "https://mountains-and-rivers.netlify.app"]
+    origin: "*",
   },
 });
 
