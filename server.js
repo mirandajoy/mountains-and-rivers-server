@@ -1,10 +1,14 @@
-require('dotenv').config();
-
+require("dotenv").config();
 const { PORT, CROSS_ORIGIN } = process.env;
 
-const io = require("socket.io")(PORT || 8080, {
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+
+const httpServer = createServer();
+
+const io = new Server(httpServer, {
   cors: {
-    origin: CROSS_ORIGIN || "https://mountains-and-rivers.netlify.app",
+    origin: [CROSS_ORIGIN, "https://mountains-and-rivers.netlify.app"]
   },
 });
 
@@ -12,9 +16,7 @@ console.log(CROSS_ORIGIN);
 console.log(PORT);
 
 io.on("connection", (socket) => {
-  const userAgent = socket.handshake.headers['user-agent'];
-
-  console.log('User Agent: ', userAgent)
+  console.log("Connected");
 
   socket.on("gameDetails", (key, sessionValue) => {
     io.emit("gameDetails", key, sessionValue);
@@ -44,3 +46,5 @@ io.on("connection", (socket) => {
     io.emit("diceRoll", rollValues);
   });
 });
+
+httpServer.listen(8080);
