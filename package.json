@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch server.js",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "build": "echo 'No build step required'"
   },
   "keywords": [],
   "author": "",
